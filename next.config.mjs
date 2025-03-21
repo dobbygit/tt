@@ -1,11 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: ['images.unsplash.com'],
   },
-  // Maintain the same base path if needed
-  basePath: process.env.NODE_ENV === "production" ? (process.env.VITE_BASE_PATH || "") : "",
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: '/api/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
