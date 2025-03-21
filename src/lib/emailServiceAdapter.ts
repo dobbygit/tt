@@ -1,8 +1,7 @@
 /**
  * Email Service Adapter
  *
- * This file provides a unified interface for sending emails that works in both
- * the standalone React app (using Supabase) and in WordPress.
+ * This file provides a unified interface for sending emails using Supabase.
  */
 
 import {
@@ -14,54 +13,29 @@ import {
   EmailData,
 } from "./emailService";
 
-import {
-  sendEmailWordPress,
-  sendQuoteRequestEmailWordPress,
-  sendContactFormEmailWordPress,
-} from "./wordpressEmailService";
-
 /**
- * Detect if the app is running in WordPress
- */
-function isRunningInWordPress(): boolean {
-  return typeof window !== "undefined" && !!window.wpData;
-}
-
-/**
- * Send an email using the appropriate service
+ * Send an email
  */
 export async function sendEmailAdapted(
-  data: EmailData,
+  data: EmailData
 ): Promise<{ success: boolean; message: string }> {
-  if (isRunningInWordPress()) {
-    return sendEmailWordPress(data);
-  } else {
-    return sendEmail(data);
-  }
+  return sendEmail(data);
 }
 
 /**
- * Send a quote request email using the appropriate service
+ * Send a quote request email
  */
 export async function sendQuoteRequestEmailAdapted(
-  data: QuoteRequestData,
+  data: QuoteRequestData
 ): Promise<{ success: boolean; message: string }> {
-  if (isRunningInWordPress()) {
-    return sendQuoteRequestEmailWordPress(data);
-  } else {
-    return sendQuoteRequestEmail(data);
-  }
+  return sendQuoteRequestEmail(data);
 }
 
 /**
- * Send a contact form email using the appropriate service
+ * Send a contact form email
  */
 export async function sendContactFormEmailAdapted(
-  data: ContactFormData,
+  data: ContactFormData
 ): Promise<{ success: boolean; message: string }> {
-  if (isRunningInWordPress()) {
-    return sendContactFormEmailWordPress(data);
-  } else {
-    return sendContactFormEmail(data);
-  }
+  return sendContactFormEmail(data);
 }
