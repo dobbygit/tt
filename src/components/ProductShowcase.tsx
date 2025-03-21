@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Eye, Star, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 import BackgroundTrees from "./BackgroundTrees";
 import ImageGallery from "./ImageGallery";
 import { useNavigate } from "react-router-dom";
+import ImageErrorHandler from "./ImageErrorHandler";
 
 interface Product {
   id: number;
@@ -363,7 +363,7 @@ const ProductCard = ({ product, variants }: ProductCardProps) => {
       animate={controls}
     >
       <div className="relative overflow-hidden h-[280px] group-hover:h-[300px] transition-all duration-500">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex"></div>
 
         <motion.div
           className="absolute top-3 right-3 z-20 bg-white/90 dark:bg-gray-800/90 rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -377,7 +377,7 @@ const ProductCard = ({ product, variants }: ProductCardProps) => {
           <Eye className="h-4 w-4 text-[#1b5e20] dark:text-green-400" />
         </motion.div>
 
-        <img
+        <ImageErrorHandler
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
@@ -402,7 +402,6 @@ const ProductCard = ({ product, variants }: ProductCardProps) => {
           </div>
         </motion.div>
       </div>
-
       <div className="p-6 flex flex-col flex-grow relative">
         <motion.div
           className="absolute -top-6 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white dark:to-gray-800 z-10"

@@ -26,9 +26,11 @@ export const defaultProducts: Product[] = [
     image: "/images/products/vehicle-covers/main.jpg",
     images: [
       "/images/products/vehicle-covers/main.jpg",
-      "/images/products/vehicle-covers/1.jpg",
-      "/images/products/vehicle-covers/2.jpg",
-      "/images/products/vehicle-covers/3.jpg",
+      "https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/vehicle-cover-1.jpg",
+      "https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/vehicle-cover-2.jpg",
+      "https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/vehicle-cover-3.jpg",
+      "https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/vehicle-cover-4.jpg",
+      "https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/vehicle-cover-5.jpg",
     ],
     category: "Covers",
     weight: "Medium",
@@ -136,14 +138,27 @@ export const updateProductImages = (
   images: string[],
 ): boolean => {
   try {
+    if (!images || images.length === 0) {
+      console.error("Cannot update product with empty images array");
+      return false;
+    }
+
     const products = loadProducts();
     const productIndex = products.findIndex((p) => p.id === productId);
 
     if (productIndex !== -1) {
+      // Filter out any empty strings or undefined values
+      const validImages = images.filter((img) => img && img.trim() !== "");
+
+      if (validImages.length === 0) {
+        console.error("No valid images provided");
+        return false;
+      }
+
       products[productIndex] = {
         ...products[productIndex],
-        image: images[0], // Set the first image as the main image
-        images: images,
+        image: validImages[0], // Set the first image as the main image
+        images: validImages,
       };
 
       return saveProducts(products);

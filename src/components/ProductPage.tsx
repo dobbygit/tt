@@ -14,6 +14,7 @@ import {
   Image as ImageIcon,
   Edit,
 } from "lucide-react";
+import ImageErrorHandler from "./ImageErrorHandler";
 import Header from "./Header";
 import Footer from "./Footer";
 import { ThemeProvider, useTheme } from "./ThemeProvider";
@@ -223,12 +224,16 @@ const ProductPageContent = () => {
               {/* Product Images */}
               <div className="p-6 md:p-8 lg:p-10">
                 <div className="relative overflow-hidden rounded-lg shadow-lg mb-4">
-                  <img
-                    src={product.images?.[selectedImage] || product.image}
-                    alt={product.name}
-                    className="w-full h-[400px] object-cover cursor-pointer"
+                  <div
+                    className="w-full h-[400px] cursor-pointer"
                     onClick={() => setGalleryOpen(true)}
-                  />
+                  >
+                    <ImageErrorHandler
+                      src={product.images?.[selectedImage] || product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="absolute top-4 right-4 flex gap-2">
                     <button
                       className="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md transition-colors duration-200"
@@ -259,7 +264,7 @@ const ProductPageContent = () => {
                         className={`overflow-hidden rounded-md cursor-pointer border-2 transition-all duration-200 ${selectedImage === index ? "border-[#1b5e20] dark:border-green-500 shadow-md" : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"}`}
                         onClick={() => setSelectedImage(index)}
                       >
-                        <img
+                        <ImageErrorHandler
                           src={img}
                           alt={`${product.name} ${index + 1}`}
                           className="w-full h-20 object-cover"
@@ -411,7 +416,7 @@ const ProductPageContent = () => {
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     <div className="relative h-48 overflow-hidden">
-                      <img
+                      <ImageErrorHandler
                         src={relatedProduct.image}
                         alt={relatedProduct.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

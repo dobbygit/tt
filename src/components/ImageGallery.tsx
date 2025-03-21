@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import ImageErrorHandler from "./ImageErrorHandler";
 
 interface ImageGalleryProps {
   images: string[];
@@ -20,25 +21,25 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   const handlePrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
       setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? images.length - 1 : prevIndex - 1,
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1
       );
     } else if (e.key === "ArrowRight") {
       setCurrentIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
     } else if (e.key === "Escape") {
       onClose();
@@ -85,7 +86,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
                   transition={{ duration: 0.3 }}
                   className="w-full h-full flex items-center justify-center"
                 >
-                  <img
+                  <ImageErrorHandler
                     src={images[currentIndex]}
                     alt={`${alt} ${currentIndex + 1}`}
                     className="max-w-full max-h-full object-contain"

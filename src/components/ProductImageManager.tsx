@@ -12,6 +12,7 @@ import { Label } from "./ui/label";
 import { Product } from "./ProductPage";
 import { AlertCircle, RefreshCw } from "lucide-react";
 import { Alert, AlertDescription } from "./ui/alert";
+import ImageErrorHandler from "./ImageErrorHandler";
 
 interface ProductImageManagerProps {
   product: Product;
@@ -27,7 +28,7 @@ const ProductImageManager = ({
   onClose,
 }: ProductImageManagerProps) => {
   const [images, setImages] = useState<string[]>(
-    product.images || [product.image],
+    product.images || [product.image]
   );
   const [newImageUrl, setNewImageUrl] = useState("");
 
@@ -98,7 +99,7 @@ const ProductImageManager = ({
             <div className="grid grid-cols-4 gap-2">
               {images.map((img, index) => (
                 <div key={index} className="relative group">
-                  <img
+                  <ImageErrorHandler
                     src={img}
                     alt={`Product image ${index + 1}`}
                     className="w-full h-20 object-cover rounded-md border border-gray-200 dark:border-gray-700"
