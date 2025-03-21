@@ -24,7 +24,7 @@ import {
  * Detect if the app is running in WordPress
  */
 function isRunningInWordPress(): boolean {
-  return typeof window !== "undefined" && !!window.wpData;
+  return typeof window !== "undefined" && !!(window as any).wpData;
 }
 
 /**
