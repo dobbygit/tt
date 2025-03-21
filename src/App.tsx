@@ -5,7 +5,7 @@ import RentalPage from "./components/RentalPage";
 import WhyUsPage from "./components/WhyUsPage";
 import ProductPage from "./components/ProductPage";
 import ContactPage from "./components/ContactPage";
-import routes from "tempo-routes";
+import routes from "./tempo-routes";
 import ErrorBoundary from "./components/ErrorBoundary";
 import LoadingSpinner from "./components/LoadingSpinner";
 import PageTransition from "./components/PageTransition";
