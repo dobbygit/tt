@@ -6,8 +6,6 @@ interface ImageErrorHandlerProps {
   alt: string;
   className?: string;
   fallbackSrc?: string;
-  onLoad?: () => void;
-  onError?: () => void;
 }
 
 const ImageErrorHandler: React.FC<ImageErrorHandlerProps> = ({
@@ -15,8 +13,6 @@ const ImageErrorHandler: React.FC<ImageErrorHandlerProps> = ({
   alt,
   className = "",
   fallbackSrc = "/images/products/placeholder.jpg",
-  onLoad,
-  onError,
 }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -25,12 +21,10 @@ const ImageErrorHandler: React.FC<ImageErrorHandlerProps> = ({
     console.error(`Failed to load image: ${src}`);
     setError(true);
     setLoading(false);
-    if (onError) onError();
   };
 
   const handleLoad = () => {
     setLoading(false);
-    if (onLoad) onLoad();
   };
 
   return (

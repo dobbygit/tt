@@ -1,17 +1,7 @@
 import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-
-// Only import tempo if we're in the Tempo environment
-let tempo = () => ({});
-if (process.env.TEMPO === "true") {
-  try {
-    const tempoModule = require("tempo-devtools/dist/vite");
-    tempo = tempoModule.tempo;
-  } catch (e) {
-    console.warn("Could not load tempo-devtools, continuing without it");
-  }
-}
+import { tempo } from "tempo-devtools/dist/vite";
 
 const conditionalPlugins: [string, Record<string, any>][] = [];
 
@@ -22,7 +12,10 @@ if (process.env.TEMPO === "true") {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/",
+  base:
+    process.env.NODE_ENV === "development"
+      ? "/"
+      : process.env.VITE_BASE_PATH || "/",
   optimizeDeps: {
     entries: ["src/main.tsx", "src/tempobook/**/*"],
   },

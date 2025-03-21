@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Eye, Star, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 import BackgroundTrees from "./BackgroundTrees";
 import ImageGallery from "./ImageGallery";
 import { useNavigate } from "react-router-dom";
-import ImageErrorHandler from "./ImageErrorHandler";
 
 interface Product {
   id: number;
@@ -377,10 +377,17 @@ const ProductCard = ({ product, variants }: ProductCardProps) => {
           <Eye className="h-4 w-4 text-[#1b5e20] dark:text-green-400" />
         </motion.div>
 
-        <ImageErrorHandler
+        <img
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
+          onError={(e) => {
+            console.error(
+              `Failed to load product image: ${e.currentTarget.src}`,
+            );
+            // Use a placeholder image
+            e.currentTarget.src = "/images/products/placeholder.jpg";
+          }}
         />
 
         <motion.div

@@ -14,7 +14,6 @@ import {
   Image as ImageIcon,
   Edit,
 } from "lucide-react";
-import ImageErrorHandler from "./ImageErrorHandler";
 import Header from "./Header";
 import Footer from "./Footer";
 import { ThemeProvider, useTheme } from "./ThemeProvider";
@@ -228,10 +227,19 @@ const ProductPageContent = () => {
                     className="w-full h-[400px] cursor-pointer"
                     onClick={() => setGalleryOpen(true)}
                   >
-                    <ImageErrorHandler
+                    <img
                       src={product.images?.[selectedImage] || product.image}
                       alt={product.name}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        console.error(
+                          `Failed to load image: ${e.currentTarget.src}`,
+                        );
+                        // Try to use the main image as fallback
+                        if (e.currentTarget.src !== product.image) {
+                          e.currentTarget.src = product.image;
+                        }
+                      }}
                     />
                   </div>
                   <div className="absolute top-4 right-4 flex gap-2">
@@ -264,10 +272,17 @@ const ProductPageContent = () => {
                         className={`overflow-hidden rounded-md cursor-pointer border-2 transition-all duration-200 ${selectedImage === index ? "border-[#1b5e20] dark:border-green-500 shadow-md" : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"}`}
                         onClick={() => setSelectedImage(index)}
                       >
-                        <ImageErrorHandler
+                        <img
                           src={img}
                           alt={`${product.name} ${index + 1}`}
                           className="w-full h-20 object-cover"
+                          onError={(e) => {
+                            console.error(
+                              `Failed to load thumbnail: ${e.currentTarget.src}`,
+                            );
+                            // Use a placeholder or the main image
+                            e.currentTarget.src = product.image;
+                          }}
                         />
                       </div>
                     ))}
@@ -416,7 +431,7 @@ const ProductPageContent = () => {
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     <div className="relative h-48 overflow-hidden">
-                      <ImageErrorHandler
+                      <img
                         src={relatedProduct.image}
                         alt={relatedProduct.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

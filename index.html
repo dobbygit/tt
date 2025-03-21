@@ -2,17 +2,272 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/public/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tendas Mozambique - Premium PVC Products</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js"></script>
+    <header id="main-header">
+      <div class="container">
+        <div class="logo">
+          <img src="/public/new-logo.svg" alt="Tendas Mozambique Logo" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <section id="hero">
+      <div class="container">
+        <h1>Premium PVC Products for Mozambique</h1>
+        <p>
+          Quality tents, tarpaulins, and custom PVC solutions for all your needs
+        </p>
+        <button class="cta-button">Request a Quote</button>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+          <div class="product-card">
+            <img src="/public/images/products/tents/main.jpg" alt="Tents" />
+            <h3>Tents</h3>
+            <p>High-quality tents for events, storage, and more</p>
+            <button class="product-button">View Details</button>
+          </div>
+          <div class="product-card">
+            <img
+              src="/public/images/products/tarpaulins/main.jpg"
+              alt="Tarpaulins"
+            />
+            <h3>Tarpaulins</h3>
+            <p>Durable tarpaulins for various applications</p>
+            <button class="product-button">View Details</button>
+          </div>
+          <div class="product-card">
+            <img src="/public/images/products/awnings/main.jpg" alt="Awnings" />
+            <h3>Awnings</h3>
+            <p>Custom awnings for residential and commercial use</p>
+            <button class="product-button">View Details</button>
+          </div>
+          <div class="product-card">
+            <img
+              src="/public/images/products/shade-ports/main.jpg"
+              alt="Shade Ports"
+            />
+            <h3>Shade Ports</h3>
+            <p>Effective shade solutions for vehicles and outdoor areas</p>
+            <button class="product-button">View Details</button>
+          </div>
+          <div class="product-card">
+            <img
+              src="/public/images/products/vehicle-covers/main.jpg"
+              alt="Vehicle Covers"
+            />
+            <h3>Vehicle Covers</h3>
+            <p>Custom covers to protect your vehicles</p>
+            <button class="product-button">View Details</button>
+          </div>
+          <div class="product-card">
+            <img
+              src="/public/images/products/custom-work/main.jpg"
+              alt="Custom Work"
+            />
+            <h3>Custom Work</h3>
+            <p>Bespoke PVC solutions for your specific needs</p>
+            <button class="product-button">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container">
+        <h2>Why Choose Us</h2>
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon">🏆</div>
+            <h3>Quality Materials</h3>
+            <p>
+              We use only the highest quality PVC materials for all our products
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Delivery</h3>
+            <p>Quick turnaround times for all orders across Mozambique</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🛠️</div>
+            <h3>Custom Solutions</h3>
+            <p>Tailored products designed to meet your specific requirements</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">💬</div>
+            <h3>Expert Consultation</h3>
+            <p>Professional advice to help you choose the right products</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-wrapper">
+          <div class="contact-form">
+            <form id="quote-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+              <div class="form-group">
+                <label for="product">Product Interest</label>
+                <select id="product" name="product">
+                  <option value="">Select a product</option>
+                  <option value="tents">Tents</option>
+                  <option value="tarpaulins">Tarpaulins</option>
+                  <option value="awnings">Awnings</option>
+                  <option value="shade-ports">Shade Ports</option>
+                  <option value="vehicle-covers">Vehicle Covers</option>
+                  <option value="custom">Custom Work</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-button">Send Request</button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <p><strong>Address:</strong> Maputo, Mozambique</p>
+            <p><strong>Phone:</strong> +258 XX XXX XXX</p>
+            <p><strong>Email:</strong> info@tendasmozambique.com</p>
+            <div class="social-links">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="/public/new-logo.svg" alt="Tendas Mozambique Logo" />
+            <p>Premium PVC Products for Mozambique</p>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#why-us">Why Us</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>Maputo, Mozambique</p>
+            <p>+258 XX XXX XXX</p>
+            <p>info@tendasmozambique.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 Tendas Mozambique. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Quote Request Modal -->
+    <div id="quote-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Request a Quote</h2>
+        <form id="modal-quote-form">
+          <div class="form-group">
+            <label for="modal-name">Name</label>
+            <input type="text" id="modal-name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="modal-email">Email</label>
+            <input type="email" id="modal-email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="modal-phone">Phone</label>
+            <input type="tel" id="modal-phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="modal-product">Product Interest</label>
+            <select id="modal-product" name="product">
+              <option value="">Select a product</option>
+              <option value="tents">Tents</option>
+              <option value="tarpaulins">Tarpaulins</option>
+              <option value="awnings">Awnings</option>
+              <option value="shade-ports">Shade Ports</option>
+              <option value="vehicle-covers">Vehicle Covers</option>
+              <option value="custom">Custom Work</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modal-message">Message</label>
+            <textarea
+              id="modal-message"
+              name="message"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-button">Send Request</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+      <div class="modal-content product-modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="product-details-container">
+          <!-- Product details will be loaded here dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <script src="/script.js"></script>
   </body>
 </html>
